@@ -10,7 +10,7 @@ const port = 8888;
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
 
-// Database connection pool
+// Database connection pool (replace with your actual credentials)-
 const dbPool = mysql.createPool({
   host: "localhost",
   user: "root",
@@ -18,7 +18,7 @@ const dbPool = mysql.createPool({
   database: "finaljs",
   waitForConnections: true,
   connectionLimit: 10,
-  
+  queueTimeout: 0,
 });
 
 // Middleware to make the database pool available in request objects
@@ -27,10 +27,9 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// Use the task routes
+// Use the task routes -
 app.use("/api/tasks", taskRoutes);
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
